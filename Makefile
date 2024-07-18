@@ -1,29 +1,16 @@
+SHELL := bash
+
 .PHONY: install
 install:
-    poetry install
-
-.PHONY: ruff
-ruff:
-    poetry run ruff format .
-	poetry run ruff check . --fix
-
-.PHONY: ruffcheck
-ruffcheck:
-    @echo "Checking ruff..."
-    poetry run ruff format . --check
-	poetry run ruff check .
-
-.PHONY: poetrycheck
-poetrycheck:
-    poetry check --lock
-
-.PHONY: pyformatcheck
-pyformatcheck: poetrycheck ruffcheck
+	poetry install
 
 .PHONY: lint
-lint: pyformatcheck
+lint:
+	poetry check --lock
+	poetry run ruff check .
+	poetry run ruff format . --check
 
 .PHONY: format
-format: ruff 
-
-SHELL := bash
+format:
+	poetry run ruff check . --fix
+	poetry run ruff format .
