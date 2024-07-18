@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "meetup-scrapper"
+version = "0.1.0"
+description = ""
+authors = ["Ana-Clara-Kandratavicius-Ferreira <anakandrat@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ruff = "^0.5.2"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+select = [
+    "I",  # isort
+    "C4", # flake8-comprehensions
+    "F",  # pyflakes
+    "E",  # pycodestyle
+    "TID",  # flake8-tidy-imports
+    "RUF", # ruff-internal
+]
+ignore = [
+    "C401",  # generator syntax for sets vs always force set comprehension
+    "PLC0414",  # allow explicit re-exports using 'as' without forcing __all__
+    "C901", # mccabe
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
